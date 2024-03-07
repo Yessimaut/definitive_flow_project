@@ -1,7 +1,8 @@
 // Utilisation du middleware de session
 const { Telegraf, session } = require('telegraf');
-const { telegramApiKey } = require('./config');
-const bot = new Telegraf(telegramApiKey);
+require('dotenv').config();
+const { TELEGRAM_API_KEY } = process.env;
+const bot = new Telegraf(TELEGRAM_API_KEY);
 
 //Initialisation de la base de données
 const sqlite3 = require('sqlite3').verbose();
