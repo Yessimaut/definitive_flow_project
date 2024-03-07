@@ -4,6 +4,28 @@ require('dotenv').config();
 const { TELEGRAM_API_KEY } = process.env;
 const bot = new Telegraf(TELEGRAM_API_KEY);
 
+const fs = require('fs');
+
+const lockFile = 'bot.lock';
+
+if (fs.existsSync(lockFile)) {
+    console.error('Une autre instance est déjà en cours d\'exécution.');
+    process.exit(1);
+}
+
+// Créez le fichier de verrouillage
+fs.writeFileSync(lockFile, '');
+
+// Initialisez et lancez votre bot ici
+
+// ...
+
+// Supprimez le fichier de verrouillage lorsque le programme se termine
+process.on('exit', () => {
+    fs.unlinkSync(lockFile);
+});
+
+
 //Initialisation de la base de données
 const sqlite3 = require('sqlite3').verbose();
 const dbPath = 'sqlstorage.db';
