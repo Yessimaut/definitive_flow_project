@@ -1,6 +1,5 @@
 {
   "build": {
-    "command": "node index.js",
-    "functions": "./api"
+    "command": "npm run start"
   }
 }
